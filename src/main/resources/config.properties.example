@@ -1,0 +1,16 @@
+telegram_token=
+telegram_username=
+
+db_url=
+db_name=
+db_user=
+db_password=
+
+google_credentials_path=
+google_sheet_id=
+
+openai_key=
+
+trello_key=
+trello_token=
+trello_listId=

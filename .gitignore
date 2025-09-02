@@ -1,0 +1,9 @@
+/src/main/resources/google.credentials.json
+/src/main/resources/config.properties
+/src/main/java/org/example/test/
+/.jpb/
+/.idea/
+*.iml
+*.ipr
+*.iws
+/target/
