@@ -21,28 +21,46 @@ Before running the project, you need to register and obtain credentials for seve
     - Register a bot via [@BotFather](https://t.me/BotFather).
     - Obtain the bot token.
 
+
 2. **PostgreSQL**
-    - Install PostgreSQL.
+    - Install PostgreSQL if needed.
     - Create a database (e.g., `vgr_feedback`).
     - Note: JDBC URL consists of **host + dbname**, for example:
       ```
       jdbc:postgresql://localhost:5432/vgr_feedback
       ```
-
 3. **OpenAI API**
-    - Register at [OpenAI](https://platform.openai.com/).
-    - Generate an API key.
-
+    - Register at [OpenAI](https://platform.openai.com/) and generate an API key here:  
+      [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+    - Place your key into `config.properties`:
+     ```
+     openai_key=sk-xxxxxx
+     ```
 4. **Google Sheets**
-    - Create a spreadsheet in Google Drive.
-    - Enable **Google Sheets API** in [Google Cloud Console](https://console.cloud.google.com/).
-    - Download the service account JSON credentials.
-    - Each Telegram chat has its own sheet (created dynamically if not present).
+    - Go to [Google Cloud Console](https://console.cloud.google.com/).
+    - Create a new project and enable **Google Sheets API**.
+    - Create a **Service Account** and download the JSON key file.
+    - Rename this file to something like `google-credentials.json` and place it into `src/main/resources/`.
+    - Share your Google Spreadsheet with the **client_email** from the JSON file (give “Editor” permission).
+    - Copy the spreadsheet ID (from the URL: `https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit`)  
+     and put it into `config.properties`:
+     ```
+     google_spreadsheet_id=your-spreadsheet-id
+     google_credentials_file=src/main/resources/google-credentials.json
+     ```
+   - Each Telegram chat has its own sheet (created dynamically if not present).
+
 
 5. **Trello**
-    - Register at [Trello](https://trello.com/).
-    - Obtain API key and token.
-    - Identify your **list ID** where cards will be created.
+    - Go to [Trello API Keys](https://trello.com/app-key) to get your **API Key**.
+    - On the same page, click **Token** to generate your **API Token**.
+    - Get your **List ID** (open a Trello list in browser and extract the ID from the URL, or use Trello API).
+    - Put these values into `config.properties`:
+   ```
+   trello_key=your-key
+   trello_token=your-token
+   trello_list_id=your-list-id
+   ```
 
 ---
 
@@ -62,19 +80,22 @@ src/main/resources/config.properties
 and fill it with your own credentials:
 
 ```properties
-telegram.token=YOUR_TELEGRAM_BOT_TOKEN
-openai.key=YOUR_OPENAI_KEY
+telegram_token=YOUR_TELEGRAM_BOT_TOKEN
+telegram_username=YOUR_OPENAI_KEY
 
-db.url=jdbc:postgresql://localhost:5432/vgr_feedback
-db.user=admin
-db.password=yourpassword
+db_url=jdbc:postgresql://localhost:5432/
+db_name=vgr_feedback
+db_user=admin
+db_password=yourpassword
 
-gcp.credentials=src/main/resources/vgr-feedbacks-XXXX.json
-google.spreadsheet.id=YOUR_SPREADSHEET_ID
+google_credentials_path=src/main/resources/google.credentials.json
+google_sheet_id=YOUR_SPREADSHEET_ID
 
-trello.key=YOUR_TRELLO_KEY
-trello.token=YOUR_TRELLO_TOKEN
-trello.listId=YOUR_TRELLO_LIST_ID
+openai_key=sk-xxxxxx
+
+trello_key=YOUR_TRELLO_KEY
+trello_token=YOUR_TRELLO_TOKEN
+trello_listId=YOUR_TRELLO_LIST_ID
 ```
 
 ---
@@ -104,7 +125,7 @@ http://localhost:7070
 ## Admin Panel
 - `/` – welcome page with navigation.
 - `/feedbacks` – feedback list with filtering (branch, role, criticality).
-- Supports CSV/Excel export (WIP).
+- Supports CSV export.
 
 ---
 
