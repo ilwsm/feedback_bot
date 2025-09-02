@@ -33,9 +33,9 @@ Before running the project, you need to register and obtain credentials for seve
     - Register at [OpenAI](https://platform.openai.com/) and generate an API key here:  
       [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
     - Place your key into `config.properties`:
-     ```
-     openai_key=sk-xxxxxx
-     ```
+      ```
+      openai_key=sk-xxxxxx
+      ```
 4. **Google Sheets**
     - Go to [Google Cloud Console](https://console.cloud.google.com/).
     - Create a new project and enable **Google Sheets API**.
@@ -44,11 +44,11 @@ Before running the project, you need to register and obtain credentials for seve
     - Share your Google Spreadsheet with the **client_email** from the JSON file (give “Editor” permission).
     - Copy the spreadsheet ID (from the URL: `https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit`)  
      and put it into `config.properties`:
-     ```
-     google_spreadsheet_id=your-spreadsheet-id
-     google_credentials_file=src/main/resources/google-credentials.json
-     ```
-   - Each Telegram chat has its own sheet (created dynamically if not present).
+      ```
+      google_spreadsheet_id=your-spreadsheet-id
+      google_credentials_file=src/main/resources/google-credentials.json
+      ```
+    - Each Telegram chat has its own sheet (created dynamically if not present).
 
 
 5. **Trello**
@@ -56,11 +56,11 @@ Before running the project, you need to register and obtain credentials for seve
     - On the same page, click **Token** to generate your **API Token**.
     - Get your **List ID** (open a Trello list in browser and extract the ID from the URL, or use Trello API).
     - Put these values into `config.properties`:
-   ```
-   trello_key=your-key
-   trello_token=your-token
-   trello_list_id=your-list-id
-   ```
+      ```
+      trello_key=your-key
+      trello_token=your-token
+      trello_list_id=your-list-id
+      ```
 
 ---
 
